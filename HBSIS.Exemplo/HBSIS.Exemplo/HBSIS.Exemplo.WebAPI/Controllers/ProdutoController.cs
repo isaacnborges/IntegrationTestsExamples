@@ -7,7 +7,8 @@ namespace HBSIS.Exemplo.WebAPI.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class ProdutoController : Controller
+    [ApiController]
+    public class ProdutoController : ControllerBase
     {
         private readonly IProdutoServico _produtoServivo;
 
@@ -86,8 +87,9 @@ namespace HBSIS.Exemplo.WebAPI.Controllers
             }
         }
 
-        [HttpGet, Route("todos")]
-        public IActionResult BuscarTodos()
+        [HttpGet]
+        //public IActionResult BuscarTodos()
+        public ActionResult BuscarTodos()
         {
             try
             {

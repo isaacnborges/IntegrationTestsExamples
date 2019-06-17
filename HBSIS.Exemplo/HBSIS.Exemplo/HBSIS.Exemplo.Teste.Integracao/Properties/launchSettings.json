@@ -1,9 +1,9 @@
-{
+﻿{
   "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
+    "windowsAuthentication": false, 
+    "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:10075/",
+      "applicationUrl": "http://localhost:64144",
       "sslPort": 0
     }
   },
@@ -15,10 +15,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebApp.API": {
+    "HBSIS.Exemplo.Teste.Integracao": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:10079/",
+      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

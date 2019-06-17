@@ -16,7 +16,7 @@ using RazorPagesProject.Tests.Helpers;
 
 namespace RazorPagesProject.Tests
 {
-    #region snippet1
+        #region snippet1
     public class IndexPageTests : 
         IClassFixture<CustomWebApplicationFactory<RazorPagesProject.Startup>>
     {

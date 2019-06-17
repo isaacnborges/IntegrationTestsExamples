@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HBSIS.Exemplo.Dominio\HBSIS.Exemplo.Dominio.csproj" />
+    <ProjectReference Include="..\HBSIS.Exemplo.Infra\HBSIS.Exemplo.Infra.csproj" />
+    <ProjectReference Include="..\HBSIS.Exemplo.Servicos\HBSIS.Exemplo.Servicos.csproj" />
+    <ProjectReference Include="..\HBSIS.Exemplo.WebAPI\HBSIS.Exemplo.WebAPI.csproj" />
+  </ItemGroup>
+
+</Project>

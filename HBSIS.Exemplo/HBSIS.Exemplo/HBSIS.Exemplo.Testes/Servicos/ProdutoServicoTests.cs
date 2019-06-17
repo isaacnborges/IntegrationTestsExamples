@@ -10,91 +10,89 @@ namespace HBSIS.Exemplo.Testes.Servicos
     [TestFixture]
     public class ProdutoServicoTests
     {
-        private IProdutoRepositorio subProdutoRepositorio;
+        private IProdutoRepositorio _subProdutoRepositorio;
 
         [SetUp]
         public void SetUp()
         {
-            this.subProdutoRepositorio = Substitute.For<IProdutoRepositorio>();
+            _subProdutoRepositorio = Substitute.For<IProdutoRepositorio>();
         }
 
         private ProdutoServico CreateProdutoServico()
         {
-            return new ProdutoServico(
-                this.subProdutoRepositorio);
+            return new ProdutoServico(_subProdutoRepositorio);
         }
 
-        [Test]
-        public void Inserir_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var unitUnderTest = this.CreateProdutoServico();
-            ComandoInserirProduto comando = TODO;
+        //[Test]
+        //public void Inserir_Produto()
+        //{
+        //    // Arrange
+        //    var unitUnderTest = CreateProdutoServico();
+        //    ComandoInserirProduto comando = TODO;
 
-            // Act
-            var result = unitUnderTest.Inserir(
-                comando);
+        //    // Act
+        //    var result = unitUnderTest.Inserir(comando);
 
-            // Assert
-            Assert.Fail();
-        }
+        //    // Assert
+        //    Assert.Fail();
+        //}
 
-        [Test]
-        public void Atualizar_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var unitUnderTest = this.CreateProdutoServico();
-            ComandoAtualizarProduto comando = TODO;
+        //[Test]
+        //public void Atualizar_StateUnderTest_ExpectedBehavior()
+        //{
+        //    // Arrange
+        //    var unitUnderTest = CreateProdutoServico();
+        //    ComandoAtualizarProduto comando = TODO;
 
-            // Act
-            var result = unitUnderTest.Atualizar(
-                comando);
+        //    // Act
+        //    var result = unitUnderTest.Atualizar(
+        //        comando);
 
-            // Assert
-            Assert.Fail();
-        }
+        //    // Assert
+        //    Assert.Fail();
+        //}
 
-        [Test]
-        public void Remover_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var unitUnderTest = this.CreateProdutoServico();
-            Guid id = TODO;
+        //[Test]
+        //public void Remover_StateUnderTest_ExpectedBehavior()
+        //{
+        //    // Arrange
+        //    var unitUnderTest = CreateProdutoServico();
+        //    Guid id = TODO;
 
-            // Act
-            unitUnderTest.Remover(
-                id);
+        //    // Act
+        //    unitUnderTest.Remover(
+        //        id);
 
-            // Assert
-            Assert.Fail();
-        }
+        //    // Assert
+        //    Assert.Fail();
+        //}
 
-        [Test]
-        public void Obter_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var unitUnderTest = this.CreateProdutoServico();
-            Guid id = TODO;
+        //[Test]
+        //public void Obter_StateUnderTest_ExpectedBehavior()
+        //{
+        //    // Arrange
+        //    var unitUnderTest = CreateProdutoServico();
+        //    Guid id = TODO;
 
-            // Act
-            var result = unitUnderTest.Obter(
-                id);
+        //    // Act
+        //    var result = unitUnderTest.Obter(
+        //        id);
 
-            // Assert
-            Assert.Fail();
-        }
+        //    // Assert
+        //    Assert.Fail();
+        //}
 
-        [Test]
-        public void BuscarTodos_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var unitUnderTest = this.CreateProdutoServico();
+        //[Test]
+        //public void BuscarTodos_StateUnderTest_ExpectedBehavior()
+        //{
+        //    // Arrange
+        //    var unitUnderTest = CreateProdutoServico();
 
-            // Act
-            var result = unitUnderTest.BuscarTodos();
+        //    // Act
+        //    var result = unitUnderTest.BuscarTodos();
 
-            // Assert
-            Assert.Fail();
-        }
+        //    // Assert
+        //    Assert.Fail();
+        //}
     }
 }

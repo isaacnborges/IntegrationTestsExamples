@@ -88,8 +88,7 @@ namespace HBSIS.Exemplo.WebAPI.Controllers
         }
 
         [HttpGet]
-        //public IActionResult BuscarTodos()
-        public ActionResult BuscarTodos()
+        public IActionResult BuscarTodos()
         {
             try
             {

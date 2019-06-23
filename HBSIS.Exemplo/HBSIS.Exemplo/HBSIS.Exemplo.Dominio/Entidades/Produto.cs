@@ -6,7 +6,7 @@
         public string Descricao { get; set; }
         public double Preco { get; set; }
 
-        private Produto()
+        public Produto()
         {
 
         }

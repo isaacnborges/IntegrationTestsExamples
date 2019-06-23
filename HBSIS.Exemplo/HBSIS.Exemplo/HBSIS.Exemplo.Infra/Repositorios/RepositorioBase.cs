@@ -36,7 +36,7 @@ namespace HBSIS.Exemplo.Infra.Repositorios
 
         public T Obter(Guid id)
         {
-            return _contexto.Set<T>().Find(id);
+            return _contexto.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
         public IList<T> BuscarTodos()

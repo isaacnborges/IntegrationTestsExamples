@@ -3,12 +3,10 @@ using HBSIS.Exemplo.Dominio.Comandos;
 using HBSIS.Exemplo.Dominio.Entidades;
 using HBSIS.Exemplo.Dominio.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -17,17 +15,17 @@ namespace HBSIS.Exemplo.Teste.Integracao
     public class ProdutoTest
     {
         private readonly ContextoTest _testContext;
-        protected IServiceProvider serviceProvider;
+        private readonly IProdutoRepositorio repositorio;
 
         public ProdutoTest()
         {
             _testContext = new ContextoTest();
+            repositorio = _testContext.ServiceProvider.GetService<IProdutoRepositorio>();
         }
 
         [Fact]
         public async Task Deve_Retornar_Produto()
         {
-            var repositorio = _testContext.ServiceProvider.GetService<IProdutoRepositorio>();
             Produto produto = GeradorProduto.NovoProduto();
             repositorio.Inserir(produto);
 
@@ -42,12 +40,11 @@ namespace HBSIS.Exemplo.Teste.Integracao
             var response = await _testContext.Client.GetAsync("/api/produto/");
             var responseProdutos = await response.Content.ReadAsAsync<IList<Produto>>();
 
-            var repositorio = _testContext.ServiceProvider.GetService<IProdutoRepositorio>();
             var produtos = repositorio.BuscarTodos();
 
             response.EnsureSuccessStatusCode();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            responseProdutos.Should().BeEquivalentTo(produtos);
+            responseProdutos.Should().BeEquivalentTo(produtos).And.BeInAscendingOrder(x => x.Descricao);
         }
 
         [Fact]
@@ -63,10 +60,40 @@ namespace HBSIS.Exemplo.Teste.Integracao
         }
 
         [Fact]
+        public async Task Deve_Atualizar_Produto()
+        {
+            Produto produtoInserir = GeradorProduto.NovoProduto();
+            repositorio.Inserir(produtoInserir);
+
+            var produto = repositorio.Obter(produtoInserir.Id);
+            produto.Codigo += 1;
+            produto.Descricao += "-Atualizar";
+            produto.Preco += produto.Preco;
+
+            var response = await _testContext.Client.PutAsJsonAsync("api/produto/", produto);
+            var responseProduto = await response.Content.ReadAsAsync<Produto>();
+            var produtoFake = ProdutoFake(produto.Codigo, produto.Descricao, produto.Preco);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            responseProduto.Should().BeEquivalentTo(produtoFake, option => option.Excluding(x => x.Id));
+        }
+
+        [Fact]
+        public async Task Deve_Remover_Produto()
+        {
+            Produto produto = GeradorProduto.NovoProduto();
+            repositorio.Inserir(produto);
+
+            var response = await _testContext.Client.DeleteAsync($"api/produto/{produto.Id}");
+            var produtoExcluido = repositorio.Obter(produto.Id);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            produtoExcluido.Should().BeNull();
+        }
+
+        [Fact]
         public async Task Produto_Nao_Encontrado()
         {
-            var repositorio = _testContext.ServiceProvider.GetService<IProdutoRepositorio>();
-
             var produtos = repositorio.BuscarTodos();
             foreach (var produto in produtos)
                 repositorio.Remover(produto.Id);

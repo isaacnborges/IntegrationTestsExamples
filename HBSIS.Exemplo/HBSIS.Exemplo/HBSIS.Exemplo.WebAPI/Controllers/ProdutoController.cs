@@ -51,14 +51,14 @@ namespace HBSIS.Exemplo.WebAPI.Controllers
             }
         }
 
-        [HttpDelete]
-        public IActionResult Remover([FromBody] ComandoRemoverProduto comando)
+        [HttpDelete, Route("{id}")]
+        public IActionResult Remover([FromRoute] Guid id)
         {
             try
             {
-                _produtoServivo.Remover(comando.Id);
+                _produtoServivo.Remover(id);
 
-                return new NoContentResult();
+                return new ObjectResult(true);
             }
             catch (ArgumentException ex)
             {
